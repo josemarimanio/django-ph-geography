@@ -1,0 +1,893 @@
+[
+    {
+        "model": "ph_geography.province",
+        "pk": 1,
+        "fields": {
+            "code": "012800000",
+            "name": "ILOCOS NORTE",
+            "population": 593081,
+            "region": 1,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 2,
+        "fields": {
+            "code": "012900000",
+            "name": "ILOCOS SUR",
+            "population": 689668,
+            "region": 1,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 3,
+        "fields": {
+            "code": "013300000",
+            "name": "LA UNION",
+            "population": 786653,
+            "region": 1,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 4,
+        "fields": {
+            "code": "015500000",
+            "name": "PANGASINAN",
+            "population": 2956726,
+            "region": 1,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 5,
+        "fields": {
+            "code": "020900000",
+            "name": "BATANES",
+            "population": 17246,
+            "region": 2,
+            "income_class": "5"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 6,
+        "fields": {
+            "code": "021500000",
+            "name": "CAGAYAN",
+            "population": 1199320,
+            "region": 2,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 7,
+        "fields": {
+            "code": "023100000",
+            "name": "ISABELA",
+            "population": 1593566,
+            "region": 2,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 8,
+        "fields": {
+            "code": "025000000",
+            "name": "NUEVA VIZCAYA",
+            "population": 452287,
+            "region": 2,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 9,
+        "fields": {
+            "code": "025700000",
+            "name": "QUIRINO",
+            "population": 188991,
+            "region": 2,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 10,
+        "fields": {
+            "code": "030800000",
+            "name": "BATAAN",
+            "population": 760650,
+            "region": 3,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 11,
+        "fields": {
+            "code": "031400000",
+            "name": "BULACAN",
+            "population": 3292071,
+            "region": 3,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 12,
+        "fields": {
+            "code": "034900000",
+            "name": "NUEVA ECIJA",
+            "population": 2151461,
+            "region": 3,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 13,
+        "fields": {
+            "code": "035400000",
+            "name": "PAMPANGA",
+            "population": null,
+            "region": 3,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 14,
+        "fields": {
+            "code": "036900000",
+            "name": "TARLAC",
+            "population": 1366027,
+            "region": 3,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 15,
+        "fields": {
+            "code": "037100000",
+            "name": "ZAMBALES",
+            "population": null,
+            "region": 3,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 16,
+        "fields": {
+            "code": "037700000",
+            "name": "AURORA",
+            "population": 214336,
+            "region": 3,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 17,
+        "fields": {
+            "code": "041000000",
+            "name": "BATANGAS",
+            "population": 2694335,
+            "region": 4,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 18,
+        "fields": {
+            "code": "042100000",
+            "name": "CAVITE",
+            "population": 3678301,
+            "region": 4,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 19,
+        "fields": {
+            "code": "043400000",
+            "name": "LAGUNA",
+            "population": 3035081,
+            "region": 4,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 20,
+        "fields": {
+            "code": "045600000",
+            "name": "QUEZON",
+            "population": null,
+            "region": 4,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 21,
+        "fields": {
+            "code": "045800000",
+            "name": "RIZAL",
+            "population": 2884227,
+            "region": 4,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 22,
+        "fields": {
+            "code": "174000000",
+            "name": "MARINDUQUE",
+            "population": 234521,
+            "region": 5,
+            "income_class": "4"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 23,
+        "fields": {
+            "code": "175100000",
+            "name": "OCCIDENTAL MINDORO",
+            "population": 487414,
+            "region": 5,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 24,
+        "fields": {
+            "code": "175200000",
+            "name": "ORIENTAL MINDORO",
+            "population": 844059,
+            "region": 5,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 25,
+        "fields": {
+            "code": "175300000",
+            "name": "PALAWAN",
+            "population": null,
+            "region": 5,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 26,
+        "fields": {
+            "code": "175900000",
+            "name": "ROMBLON",
+            "population": 292781,
+            "region": 5,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 27,
+        "fields": {
+            "code": "050500000",
+            "name": "ALBAY",
+            "population": 1314826,
+            "region": 6,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 28,
+        "fields": {
+            "code": "051600000",
+            "name": "CAMARINES NORTE",
+            "population": 583313,
+            "region": 6,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 29,
+        "fields": {
+            "code": "051700000",
+            "name": "CAMARINES SUR",
+            "population": 1952544,
+            "region": 6,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 30,
+        "fields": {
+            "code": "052000000",
+            "name": "CATANDUANES",
+            "population": 260964,
+            "region": 6,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 31,
+        "fields": {
+            "code": "054100000",
+            "name": "MASBATE",
+            "population": 892393,
+            "region": 6,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 32,
+        "fields": {
+            "code": "056200000",
+            "name": "SORSOGON",
+            "population": 792949,
+            "region": 6,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 33,
+        "fields": {
+            "code": "060400000",
+            "name": "AKLAN",
+            "population": 574823,
+            "region": 7,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 34,
+        "fields": {
+            "code": "060600000",
+            "name": "ANTIQUE",
+            "population": 582012,
+            "region": 7,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 35,
+        "fields": {
+            "code": "061900000",
+            "name": "CAPIZ",
+            "population": 761384,
+            "region": 7,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 36,
+        "fields": {
+            "code": "063000000",
+            "name": "ILOILO",
+            "population": null,
+            "region": 7,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 37,
+        "fields": {
+            "code": "064500000",
+            "name": "NEGROS OCCIDENTAL",
+            "population": null,
+            "region": 7,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 38,
+        "fields": {
+            "code": "067900000",
+            "name": "GUIMARAS",
+            "population": 174613,
+            "region": 7,
+            "income_class": "4"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 39,
+        "fields": {
+            "code": "071200000",
+            "name": "BOHOL",
+            "population": 1313560,
+            "region": 8,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 40,
+        "fields": {
+            "code": "072200000",
+            "name": "CEBU",
+            "population": null,
+            "region": 8,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 41,
+        "fields": {
+            "code": "074600000",
+            "name": "NEGROS ORIENTAL",
+            "population": 1354995,
+            "region": 8,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 42,
+        "fields": {
+            "code": "076100000",
+            "name": "SIQUIJOR",
+            "population": 95984,
+            "region": 8,
+            "income_class": "5"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 43,
+        "fields": {
+            "code": "082600000",
+            "name": "EASTERN SAMAR",
+            "population": 467160,
+            "region": 9,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 44,
+        "fields": {
+            "code": "083700000",
+            "name": "LEYTE",
+            "population": null,
+            "region": 9,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 45,
+        "fields": {
+            "code": "084800000",
+            "name": "NORTHERN SAMAR",
+            "population": 632379,
+            "region": 9,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 46,
+        "fields": {
+            "code": "086000000",
+            "name": "SAMAR (WESTERN SAMAR)",
+            "population": 780481,
+            "region": 9,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 47,
+        "fields": {
+            "code": "086400000",
+            "name": "SOUTHERN LEYTE",
+            "population": 421750,
+            "region": 9,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 48,
+        "fields": {
+            "code": "087800000",
+            "name": "BILIRAN",
+            "population": 171612,
+            "region": 9,
+            "income_class": "4"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 49,
+        "fields": {
+            "code": "097200000",
+            "name": "ZAMBOANGA DEL NORTE",
+            "population": 1011393,
+            "region": 10,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 50,
+        "fields": {
+            "code": "097300000",
+            "name": "ZAMBOANGA DEL SUR",
+            "population": null,
+            "region": 10,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 51,
+        "fields": {
+            "code": "098300000",
+            "name": "ZAMBOANGA SIBUGAY",
+            "population": 633129,
+            "region": 10,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 52,
+        "fields": {
+            "code": "101300000",
+            "name": "BUKIDNON",
+            "population": 1415226,
+            "region": 11,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 53,
+        "fields": {
+            "code": "101800000",
+            "name": "CAMIGUIN",
+            "population": 88478,
+            "region": 11,
+            "income_class": "5"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 54,
+        "fields": {
+            "code": "103500000",
+            "name": "LANAO DEL NORTE",
+            "population": null,
+            "region": 11,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 55,
+        "fields": {
+            "code": "104200000",
+            "name": "MISAMIS OCCIDENTAL",
+            "population": 602126,
+            "region": 11,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 56,
+        "fields": {
+            "code": "104300000",
+            "name": "MISAMIS ORIENTAL",
+            "population": null,
+            "region": 11,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 57,
+        "fields": {
+            "code": "112300000",
+            "name": "DAVAO DEL NORTE",
+            "population": 1016332,
+            "region": 12,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 58,
+        "fields": {
+            "code": "112400000",
+            "name": "DAVAO DEL SUR",
+            "population": 632588,
+            "region": 12,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 59,
+        "fields": {
+            "code": "112500000",
+            "name": "DAVAO ORIENTAL",
+            "population": 558958,
+            "region": 12,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 60,
+        "fields": {
+            "code": "118200000",
+            "name": "DAVAO DE ORO (COMPOSTELA VALLEY)",
+            "population": 736107,
+            "region": 12,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 61,
+        "fields": {
+            "code": "118600000",
+            "name": "DAVAO OCCIDENTAL",
+            "population": 316342,
+            "region": 12,
+            "income_class": "4"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 62,
+        "fields": {
+            "code": "124700000",
+            "name": "COTABATO (NORTH COTABATO)",
+            "population": 1379747,
+            "region": 13,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 63,
+        "fields": {
+            "code": "126300000",
+            "name": "SOUTH COTABATO",
+            "population": null,
+            "region": 13,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 64,
+        "fields": {
+            "code": "126500000",
+            "name": "SULTAN KUDARAT",
+            "population": 812095,
+            "region": 13,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 65,
+        "fields": {
+            "code": "128000000",
+            "name": "SARANGANI",
+            "population": 544261,
+            "region": 13,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 66,
+        "fields": {
+            "code": "140100000",
+            "name": "ABRA",
+            "population": 241160,
+            "region": 15,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 67,
+        "fields": {
+            "code": "141100000",
+            "name": "BENGUET",
+            "population": null,
+            "region": 15,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 68,
+        "fields": {
+            "code": "142700000",
+            "name": "IFUGAO",
+            "population": 202802,
+            "region": 15,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 69,
+        "fields": {
+            "code": "143200000",
+            "name": "KALINGA",
+            "population": 212680,
+            "region": 15,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 70,
+        "fields": {
+            "code": "144400000",
+            "name": "MOUNTAIN PROVINCE",
+            "population": 154590,
+            "region": 15,
+            "income_class": "4"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 71,
+        "fields": {
+            "code": "148100000",
+            "name": "APAYAO",
+            "population": 119184,
+            "region": 15,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 72,
+        "fields": {
+            "code": "150700000",
+            "name": "BASILAN",
+            "population": null,
+            "region": 16,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 73,
+        "fields": {
+            "code": "153600000",
+            "name": "LANAO DEL SUR",
+            "population": 1045429,
+            "region": 16,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 74,
+        "fields": {
+            "code": "153800000",
+            "name": "MAGUINDANAO",
+            "population": null,
+            "region": 16,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 75,
+        "fields": {
+            "code": "156600000",
+            "name": "SULU",
+            "population": 824731,
+            "region": 16,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 76,
+        "fields": {
+            "code": "157000000",
+            "name": "TAWI-TAWI",
+            "population": 390715,
+            "region": 16,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 77,
+        "fields": {
+            "code": "160200000",
+            "name": "AGUSAN DEL NORTE",
+            "population": null,
+            "region": 17,
+            "income_class": "3"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 78,
+        "fields": {
+            "code": "160300000",
+            "name": "AGUSAN DEL SUR",
+            "population": 700653,
+            "region": 17,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 79,
+        "fields": {
+            "code": "166700000",
+            "name": "SURIGAO DEL NORTE",
+            "population": 485088,
+            "region": 17,
+            "income_class": "2"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 80,
+        "fields": {
+            "code": "166800000",
+            "name": "SURIGAO DEL SUR",
+            "population": 592250,
+            "region": 17,
+            "income_class": "1"
+        }
+    },
+    {
+        "model": "ph_geography.province",
+        "pk": 81,
+        "fields": {
+            "code": "168500000",
+            "name": "DINAGAT ISLANDS",
+            "population": 127152,
+            "region": 17,
+            "income_class": "4"
+        }
+    }
+]
