@@ -6,6 +6,13 @@ Philippine Geography models for Django
 Data retrieved from the Philippine Standard Geographic Code (PSGC) published by Philippine Statistics Authority (PSA) on March 31, 2020 (https://psa.gov.ph/classification/psgc/downloads/PSGC%20Publication%20March2020.xlsx).
 
 
+Table of Contents
+-----------------
+- `Installation <#installation>`_
+- `Models <#models>`_
+- `Monkey Patching <#monkey-patching>`_
+
+
 Installation
 ------------
 
@@ -56,11 +63,9 @@ Model for regions. Available fields are:
 - ``name`` (``CharField<max_length=100, null=False)>``): Geographical name for region.
 - ``population`` (``PositiveIntegerField<null=True>``): Population count based on 2015 POPCEN. Null value means no data is available.
 - ``island_group`` (``CharField<max_length=1, choices=ISLAND_GROUP_CHOICES, null=False>``): Island group where the region is located. Possible values are based on items in model property ``ISLAND_GROUP_CHOICES``:
-
     + ``ISLAND_GROUP_LUZON`` (``'L'``) - Luzon
     + ``ISLAND_GROUP_VISAYAS`` (``'V'``) - Visayas
     + ``ISLAND_GROUP_MINDANAO`` (``'M'``) - Mindanao
-
 - ``is_active`` (``BooleanField<null=False, default=True>``): Toggle if region is active (``True``) or not (``False``).
 
 
@@ -74,7 +79,6 @@ Model for provinces. Available fields are:
 - ``population`` (``PositiveIntegerField<null=True>``): Population count based on 2015 POPCEN. Null value means no data is available.
 - ``region`` (``ForeignKey<Region, related_name='provinces', related_query_name='province', null=False, on_delete=models.CASCADE>``): Region where province is located.
 - ``income_class`` (``CharField<max_length=1, choices=INCOME_CLASS_CHOICES, null=False, blank=True>``): Income classification. Blank value means no data is available. Possible values are based on items in model property ``INCOME_CLASS_CHOICES``:
-
     + ``INCOME_CLASS_1`` (``'1'``) - 1st
     + ``INCOME_CLASS_2`` (``'2'``) - 2nd
     + ``INCOME_CLASS_3`` (``'3'``) - 3rd
@@ -82,8 +86,12 @@ Model for provinces. Available fields are:
     + ``INCOME_CLASS_5`` (``'5'``) - 5th
     + ``INCOME_CLASS_6`` (``'6'``) - 6th
     + ``INCOME_CLASS_SPECIAL`` (``'S'``) - Special
-
 - ``is_active`` (``BooleanField<null=False, default=True>``): Toggle if province is active (``True``) or not (``False``).
+
+
+Available properties:
+
+- ``island_group``: Reference to ``Region`` field ``island_group``.
 
 
 ph_geography.models.Municipality
@@ -96,7 +104,6 @@ Model for municipalities and cities. Available fields are:
 - ``population`` (``PositiveIntegerField<null=True>``): Population count based on 2015 POPCEN. Null value means no data is available.
 - ``province`` (``ForeignKey<Province, related_name='municipalities', related_query_name='municipality', null=False, on_delete=models.CASCADE>``): Province where municipality is located.
 - ``income_class`` (``CharField<max_length=1, choices=INCOME_CLASS_CHOICES, null=False, blank=True>``): Income classification. Blank value means no data is available. Possible values are based on items in model property ``INCOME_CLASS_CHOICES``:
-
     + ``INCOME_CLASS_1`` (``'1'``) - 1st
     + ``INCOME_CLASS_2`` (``'2'``) - 2nd
     + ``INCOME_CLASS_3`` (``'3'``) - 3rd
@@ -104,16 +111,19 @@ Model for municipalities and cities. Available fields are:
     + ``INCOME_CLASS_5`` (``'5'``) - 5th
     + ``INCOME_CLASS_6`` (``'6'``) - 6th
     + ``INCOME_CLASS_SPECIAL`` (``'S'``) - Special
-
 - ``is_city`` (``BooleanField<null=False>``): Toggle to define whether the municipality is a city (``True``) or not (``False``).
 - ``is_capital`` (``BooleanField<null=False>``): Toggle to define whether the municipality is a capital (``True``) or not (``False``).
 - ``city_class`` (``CharField<max_length=1, choices=CITY_CLASS_CHOICES, null=False, blank=True>``): City legal classification. Blank value means no data is available. Possible values are based on items in model property ``CITY_CLASS_CHOICES``:
-
     + ``CITY_CLASS_COMPONENT_CITY`` (``'C'``) - CC
     + ``CITY_CLASS_INDEPENDENT_COMPONENT_CITY`` (``'I'``) - ICC
     + ``CITY_CLASS_HIGHLY_URBANIZED_CITY`` (``'H'``) - HUC
-
 - ``is_active`` (``BooleanField<null=False, default=True>``): Toggle if municipality is active (``True``) or not (``False``).
+
+
+Available properties:
+
+- ``island_group``: Reference to ``Region`` field ``island_group``.
+- ``region``: Reference to ``province`` field ``region``.
 
 
 ph_geography.models.Barangay
@@ -129,11 +139,18 @@ Model for barangays. Available fields are:
 - ``is_active`` (``BooleanField<null=False, default=True>``): Toggle if barangay is active (``True``) or not (``False``).
 
 
+Available properties:
+
+- ``island_group``: Reference to ``Region`` field ``island_group``.
+- ``province``: Reference to ``municipality`` field ``province``.
+- ``region``: Reference to property ``province`` field ``region``.
+
+
 
 Monkey Patching
 ---------------
 
-After migrating the models and loading the initial data through fixtures, you can monkey patch **django-ph-geography** models using the provided methods to suit your needs:
+After migrating the models and loading the initial data through fixtures, you can monkey patch (*if you're into it*) **django-ph-geography** models using the provided methods to suit your needs:
 
 
 Adding new fields
