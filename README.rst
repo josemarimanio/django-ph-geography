@@ -1,7 +1,7 @@
 Philippine Geography models for Django
 ======================================
 
-**django-ph-geography** provide models for integrating Regions, Provinces, Municipalities, and Barangays in the Philippines.
+**django-ph-geography** provides models for integrating Regions, Provinces, Municipalities, and Barangays in the Philippines.
 
 Data retrieved from the Philippine Standard Geographic Code (PSGC) published by Philippine Statistics Authority (PSA) on March 31, 2020 (https://psa.gov.ph/classification/psgc/downloads/PSGC%20Publication%20March2020.xlsx).
 
@@ -56,9 +56,12 @@ Model for regions. Available fields are:
 - ``name`` (``CharField<max_length=100, null=False)>``): Geographical name for region.
 - ``population`` (``PositiveIntegerField<null=True>``): Population count based on 2015 POPCEN. Null value means no data is available.
 - ``island_group`` (``CharField<max_length=1, choices=ISLAND_GROUP_CHOICES, null=False>``): Island group where the region is located. Possible values are based on items in model property ``ISLAND_GROUP_CHOICES``:
+
     + ``ISLAND_GROUP_LUZON`` (``'L'``) - Luzon
     + ``ISLAND_GROUP_VISAYAS`` (``'V'``) - Visayas
     + ``ISLAND_GROUP_MINDANAO`` (``'M'``) - Mindanao
+
+- ``is_active`` (``BooleanField<null=False, default=True>``): Toggle if region is active (``True``) or not (``False``).
 
 
 ph_geography.models.Province
@@ -71,6 +74,7 @@ Model for provinces. Available fields are:
 - ``population`` (``PositiveIntegerField<null=True>``): Population count based on 2015 POPCEN. Null value means no data is available.
 - ``region`` (``ForeignKey<Region, related_name='provinces', related_query_name='province', null=False, on_delete=models.CASCADE>``): Region where province is located.
 - ``income_class`` (``CharField<max_length=1, choices=INCOME_CLASS_CHOICES, null=False, blank=True>``): Income classification. Blank value means no data is available. Possible values are based on items in model property ``INCOME_CLASS_CHOICES``:
+
     + ``INCOME_CLASS_1`` (``'1'``) - 1st
     + ``INCOME_CLASS_2`` (``'2'``) - 2nd
     + ``INCOME_CLASS_3`` (``'3'``) - 3rd
@@ -78,6 +82,8 @@ Model for provinces. Available fields are:
     + ``INCOME_CLASS_5`` (``'5'``) - 5th
     + ``INCOME_CLASS_6`` (``'6'``) - 6th
     + ``INCOME_CLASS_SPECIAL`` (``'S'``) - Special
+
+- ``is_active`` (``BooleanField<null=False, default=True>``): Toggle if province is active (``True``) or not (``False``).
 
 
 ph_geography.models.Municipality
@@ -90,6 +96,7 @@ Model for municipalities and cities. Available fields are:
 - ``population`` (``PositiveIntegerField<null=True>``): Population count based on 2015 POPCEN. Null value means no data is available.
 - ``province`` (``ForeignKey<Province, related_name='municipalities', related_query_name='municipality', null=False, on_delete=models.CASCADE>``): Province where municipality is located.
 - ``income_class`` (``CharField<max_length=1, choices=INCOME_CLASS_CHOICES, null=False, blank=True>``): Income classification. Blank value means no data is available. Possible values are based on items in model property ``INCOME_CLASS_CHOICES``:
+
     + ``INCOME_CLASS_1`` (``'1'``) - 1st
     + ``INCOME_CLASS_2`` (``'2'``) - 2nd
     + ``INCOME_CLASS_3`` (``'3'``) - 3rd
@@ -97,12 +104,16 @@ Model for municipalities and cities. Available fields are:
     + ``INCOME_CLASS_5`` (``'5'``) - 5th
     + ``INCOME_CLASS_6`` (``'6'``) - 6th
     + ``INCOME_CLASS_SPECIAL`` (``'S'``) - Special
-- ``is_city`` (``BooleanField<null=False>``): Toggle to define whether the municipality is a city (``True``) or not (``False``)
-- ``is_capital``: (``BooleanField<null=False>``): Toggle to define whether the municipality is a capital (``True``) or not (``False``)
+
+- ``is_city`` (``BooleanField<null=False>``): Toggle to define whether the municipality is a city (``True``) or not (``False``).
+- ``is_capital`` (``BooleanField<null=False>``): Toggle to define whether the municipality is a capital (``True``) or not (``False``).
 - ``city_class`` (``CharField<max_length=1, choices=CITY_CLASS_CHOICES, null=False, blank=True>``): City legal classification. Blank value means no data is available. Possible values are based on items in model property ``CITY_CLASS_CHOICES``:
+
     + ``CITY_CLASS_COMPONENT_CITY`` (``'C'``) - CC
     + ``CITY_CLASS_INDEPENDENT_COMPONENT_CITY`` (``'I'``) - ICC
     + ``CITY_CLASS_HIGHLY_URBANIZED_CITY`` (``'H'``) - HUC
+
+- ``is_active`` (``BooleanField<null=False, default=True>``): Toggle if municipality is active (``True``) or not (``False``).
 
 
 ph_geography.models.Barangay
@@ -115,3 +126,52 @@ Model for barangays. Available fields are:
 - ``population`` (``PositiveIntegerField<null=True>``): Population count based on 2015 POPCEN. Null value means no data is available.
 - ``municipality`` (``ForeignKey<Municipality>, related_name='barangays', related_query_name='barangay', null=False, on_delete=models.CASCADE>``): Municipality where barangay is located.
 - ``is_urban`` (``BooleanField<null=False>``): Toggle to define whether the barangay is urban (``True``) or rural (``False``). Null value means no data is available.
+- ``is_active`` (``BooleanField<null=False, default=True>``): Toggle if barangay is active (``True``) or not (``False``).
+
+
+
+Monkey Patching
+---------------
+
+After migrating the models and loading the initial data through fixtures, you can monkey patch **django-ph-geography** models using the provided methods to suit your needs:
+
+
+Adding new fields
+^^^^^^^^^^^^^^^^^
+
+You can use the custom method ``add_field`` provided by abstract model class ``ph_geography.models.AbstractGeographyModel`` to add fields to the models provided.
+Using the said method to the abstract model will apply the action to all subclasses.
+
+Example:
+
+.. code-block:: python
+
+    from django.db import models
+
+    from ph_region.models import AbstractGeographyModel, Region
+
+
+    # Add field to Region, Province, Municipality, Barangay, and any subclass models of AbstractGeographyModel
+    AbstractGeography.add_field('all_models', models.BooleanField(null=True))
+
+    # Add field to a single AbstractGeographyModel subclass
+    Region.add_field('single_model', models.BooleanField(null=True))
+
+
+Removing existing fields
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can use the custom method ``remove_to_class`` provided by abstract class ``ph_geography.models.AbstractGeographyModel`` to remove fields to the models provided.
+
+Example:
+
+.. code-block:: python
+
+    from ph_geography.models import Region
+
+
+    # Remove field 'island_group' from Region
+    Region.remove_field('island_group')
+
+    # Multiple fields to remove are supported
+    Municipality.remove_field('is_city', 'is_capital')
