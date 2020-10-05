@@ -10,13 +10,49 @@ class AbstractGeographyModel(models.Model):
         * name - Geographical name.
         * population - Population count based on 2015 POPCEN.
                         Null value  means no data is available.
+        * is_active - Toggle if entry is active (True) or not (False).
     """
     code = models.CharField(max_length=10, unique=True, null=False, verbose_name='Code')
     name = models.CharField(max_length=100, null=False, verbose_name='Name')
     population = models.PositiveIntegerField(null=True, verbose_name='Population')
+    is_active = models.BooleanField(null=False, default=True, verbose_name='Is Active')
 
     class Meta:
         abstract = True
+
+    @classmethod
+    def add_field(cls, name, value):
+        """
+        Add a field from the model.
+
+        Using this method to the abstract model will apply the action to all subclasses.
+        """
+        if cls._meta.abstract:
+            for subcls in cls.__subclasses__():
+                subcls.add_to_class(name, value)
+        else:
+            cls.add_to_class(name, value)
+
+    @classmethod
+    def remove_field(cls, *names):
+        """
+        Remove a field from the model.
+
+        Supports a single <str> field name, or a <list of str> of field names.
+        """
+        if isinstance(names, str):
+            names = (names,)
+        elif not isinstance(names, (list, tuple,)) and all(isinstance(name, str) for name in names):
+            raise TypeError('"remove_to_class" only supports a single <str> name,'
+                            'or a <list of str> of field names.')
+        is_deleted = False
+        for name in names:
+            for field in cls._meta.local_fields:
+                if field.name == name:
+                    cls._meta.local_fields.remove(field)
+                    is_deleted = True
+        if not is_deleted:
+            raise AttributeError('No attribute name(s) found in model.')
 
     def __repr__(self):
         return '<Code: {code}, Name: {name}>'.format(
@@ -39,6 +75,7 @@ class Region(AbstractGeographyModel):
                         Null value means no data is available.
         * island_group - Island group where the region is located. Possible values are 'L' (for Luzon),
                          'V' (for Visayas), and 'M' (for Mindanao).
+        * is_active - Toggle if region is active (True) or not (False).
     """
     ISLAND_GROUP_LUZON = 'L'
     ISLAND_GROUP_VISAYAS = 'V'
@@ -71,6 +108,7 @@ class Province(AbstractGeographyModel):
         * income_class - Income classification. Possible values are '1' (1st), '2' (2nd), '3' (3rd),
                           '4' (4th), '5' (5th), '6' (6th), and 'S' (Special).
                           Blank means no data is available.
+        * is_active - Toggle if province is active (True) or not (False).
     """
     INCOME_CLASS_1 = '1'
     INCOME_CLASS_2 = '2'
@@ -124,6 +162,7 @@ class Municipality(AbstractGeographyModel):
         * income_class - Income classification. Possible values are '1' (1st), '2' (2nd), '3' (3rd),
                           '4' (4th), '5' (5th), '6' (6th), and 'S' (Special).
                           Blank value means no data is available.
+        * is_active - Toggle if municipality is active (True) or not (False).
     """
     CITY_CLASS_COMPONENT_CITY = 'C'
     CITY_CLASS_INDEPENDENT_COMPONENT_CITY = 'I'
@@ -183,6 +222,7 @@ class Barangay(AbstractGeographyModel):
         * municipality - Municipality where the barangay is located.
         * is_urban - Toggle to define whether the barangay is urban (True) or rural (False).
                       Null value means no data is available.
+        * is_active - Toggle if barangay is active (True) or not (False).
     """
     municipality = models.ForeignKey(
         Municipality,
