@@ -143,6 +143,13 @@ class Province(AbstractGeographyModel):
         verbose_name = 'Province'
         verbose_name_plural = 'Provinces'
 
+    @property
+    def island_group(self):
+        try:
+            return self.region.island_group
+        except AttributeError:
+            return None
+
 
 class Municipality(AbstractGeographyModel):
     """
@@ -209,6 +216,20 @@ class Municipality(AbstractGeographyModel):
         verbose_name = 'Municipality'
         verbose_name_plural = 'Municipalities'
 
+    @property
+    def region(self):
+        try:
+            return self.province.region
+        except AttributeError:
+            return None
+
+    @property
+    def island_group(self):
+        try:
+            return self.province.region.island_group
+        except AttributeError:
+            return None
+
 
 class Barangay(AbstractGeographyModel):
     """
@@ -238,3 +259,24 @@ class Barangay(AbstractGeographyModel):
         db_table = 'ph_geography_barangay'
         verbose_name = 'Barangay'
         verbose_name_plural = 'Barangays'
+
+    @property
+    def province(self):
+        try:
+            return self.municipality.province
+        except AttributeError:
+            return None
+
+    @property
+    def region(self):
+        try:
+            return self.province.region
+        except AttributeError:
+            return None
+
+    @property
+    def island_group(self):
+        try:
+            return self.region.island_group
+        except AttributeError:
+            return None
