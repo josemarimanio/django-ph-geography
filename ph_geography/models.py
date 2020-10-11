@@ -1,9 +1,12 @@
+from django.core.exceptions import FieldDoesNotExist
 from django.db import models
 
 
-class AbstractGeographyModel(models.Model):
+class PhilippineGeography(models.Model):
     """
     Abstract model for common geographical fields.
+
+    (Also a Yoyoy Villame song: https://www.youtube.com/watch?v=e_PMcFjE9as)
 
     Available fields are:
         * code - Unique geographical code.
@@ -23,7 +26,7 @@ class AbstractGeographyModel(models.Model):
     @classmethod
     def add_field(cls, name, value):
         """
-        Add a field from the model.
+        Add a field to the model.
 
         Using this method to the abstract model will apply the action to all subclasses.
         """
@@ -34,37 +37,60 @@ class AbstractGeographyModel(models.Model):
             cls.add_to_class(name, value)
 
     @classmethod
+    def _remove_field(cls, names):
+        """
+        Remove fields from the model.
+        """
+        for name in names:
+            try:
+                field = cls._meta.get_field(name)
+            except FieldDoesNotExist:
+                raise AttributeError('No attribute name found in model: {name}'.format(name=name))
+            else:
+                cls._meta.local_fields.remove(field)
+
+    @classmethod
     def remove_field(cls, *names):
         """
-        Remove a field from the model.
+        Remove fields from the model.
 
-        Supports a single <str> field name, or a <list of str> of field names.
+        Supports *args of <str> field names.
+
+        Using this method to the abstract model will apply the action to all subclasses.
         """
-        if isinstance(names, str):
-            names = (names,)
-        elif not isinstance(names, (list, tuple,)) and all(isinstance(name, str) for name in names):
-            raise TypeError('"remove_to_class" only supports a single <str> name,'
-                            'or a <list of str> of field names.')
-        is_deleted = False
-        for name in names:
-            for field in cls._meta.local_fields:
-                if field.name == name:
-                    cls._meta.local_fields.remove(field)
-                    is_deleted = True
-        if not is_deleted:
-            raise AttributeError('No attribute name(s) found in model.')
+
+        if not all(isinstance(name, str) for name in names):
+            raise TypeError('"remove_field" only supports <str> of field names.')
+
+        if cls._meta.abstract:
+            is_removed = False
+            for subcls in cls.__subclasses__():
+                try:
+                    subcls._remove_field(names)
+                except AttributeError:
+                    pass
+                else:
+                    is_removed = True
+            if not is_removed:
+                raise AttributeError('No attribute name found in any model: {names}'.format(names=', '.join(names)))
+        else:
+            cls._remove_field(names)
 
     def __repr__(self):
-        return '<Code: {code}, Name: {name}>'.format(
-            code=self.code,
-            name=self.name,
-        )
+        code = getattr(self, 'code', None)
+        name = getattr(self, 'name', None)
+        model = self.__class__.__name__
+        if code and name:
+            return '<Code: {code}, {model}: {name}>'.format(code=code, model=model, name=name)
+        elif name:
+            return '<{model}: {name}>'.format(model=model, name=name)
+        return super(PhilippineGeography, self).__repr__()
 
     def __str__(self):
-        return self.name
+        return getattr(self, 'name', None) or super(PhilippineGeography, self).__str__()
 
 
-class Region(AbstractGeographyModel):
+class Region(PhilippineGeography):
     """
     Model for regions.
 
@@ -95,7 +121,7 @@ class Region(AbstractGeographyModel):
         verbose_name_plural = 'Regions'
 
 
-class Province(AbstractGeographyModel):
+class Province(PhilippineGeography):
     """
     Model for provinces.
 
@@ -145,13 +171,10 @@ class Province(AbstractGeographyModel):
 
     @property
     def island_group(self):
-        try:
-            return self.region.island_group
-        except AttributeError:
-            return None
+        return self.region.island_group
 
 
-class Municipality(AbstractGeographyModel):
+class Municipality(PhilippineGeography):
     """
     Model for municipalities and cities.
 
@@ -218,20 +241,14 @@ class Municipality(AbstractGeographyModel):
 
     @property
     def region(self):
-        try:
-            return self.province.region
-        except AttributeError:
-            return None
+        return self.province.region
 
     @property
     def island_group(self):
-        try:
-            return self.province.region.island_group
-        except AttributeError:
-            return None
+        return self.province.region.island_group
 
 
-class Barangay(AbstractGeographyModel):
+class Barangay(PhilippineGeography):
     """
     Model for barangays.
 
@@ -262,21 +279,12 @@ class Barangay(AbstractGeographyModel):
 
     @property
     def province(self):
-        try:
-            return self.municipality.province
-        except AttributeError:
-            return None
+        return self.municipality.province
 
     @property
     def region(self):
-        try:
-            return self.province.region
-        except AttributeError:
-            return None
+        return self.province.region
 
     @property
     def island_group(self):
-        try:
-            return self.region.island_group
-        except AttributeError:
-            return None
+        return self.region.island_group
