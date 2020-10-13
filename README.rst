@@ -1,3 +1,20 @@
+.. image:: https://img.shields.io/pypi/v/django-ph-geography
+    :alt: PyPi
+    :target: https://pypi.org/project/django-ph-geography
+
+.. image:: https://www.codefactor.io/repository/github/josemarimanio/django-ph-geography/badge
+   :alt: CodeFactor Grade
+   :target: https://www.codefactor.io/repository/github/josemarimanio/django-ph-geography
+
+.. image:: https://img.shields.io/codecov/c/github/josemarimanio/django-adminlte2-templates
+    :alt: Codecov
+    :target: https://codecov.io/gh/josemarimanio/django-ph-geography
+
+.. image:: https://img.shields.io/github/license/josemarimanio/django-ph-geography
+    :alt: License - MIT
+    :target: https://github.com/josemarimanio/django-ph-geography/blob/master/LICENSE
+
+
 Philippine Geography models for Django
 ======================================
 
@@ -44,11 +61,7 @@ Load initial data:
 
 .. code-block:: console
 
-    python manage.py loaddata regions.json --app ph_geography
-    python manage.py loaddata provinces.json --app ph_geography
-    python manage.py loaddata municipalities.json --app ph_geography
-    python manage.py loaddata barangays.json --app ph_geography
-
+    python manage.py phgeofixtures
 
 
 Models
@@ -156,7 +169,7 @@ After migrating the models and loading the initial data through fixtures, you ca
 Adding new fields
 ^^^^^^^^^^^^^^^^^
 
-You can use the custom method ``add_field`` provided by abstract model class ``ph_geography.models.AbstractGeographyModel`` to add fields to the models provided.
+You can use the custom method ``add_field`` provided by abstract model class ``ph_geography.models.PhilippineGeography`` to add fields to the models provided.
 Using the said method to the abstract model will apply the action to all subclasses.
 
 Example:
@@ -165,27 +178,34 @@ Example:
 
     from django.db import models
 
-    from ph_region.models import AbstractGeographyModel, Region
+    from ph_geography.models import PhilippineGeography
+    from ph_geography.models import Region
 
 
-    # Add field to Region, Province, Municipality, Barangay, and any subclass models of AbstractGeographyModel
-    AbstractGeography.add_field('all_models', models.BooleanField(null=True))
+    # Add field to Region, Province, Municipality, Barangay, and any subclass models of PhilippineGeography
+    PhilippineGeography.add_field('all_models', models.BooleanField(null=True))
 
-    # Add field to a single AbstractGeographyModel subclass
+    # Add field 'single_model' to Region
     Region.add_field('single_model', models.BooleanField(null=True))
 
 
 Removing existing fields
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can use the custom method ``remove_to_class`` provided by abstract class ``ph_geography.models.AbstractGeographyModel`` to remove fields to the models provided.
+You can use the custom method ``remove_field`` provided by abstract model class ``ph_geography.models.PhilippineGeography`` to remove fields to the models provided.
+Using the same method to the abstract model will apply the action to all subclasses.
 
 Example:
 
 .. code-block:: python
 
+    from ph_geography.models import PhilippineGeography
+    from ph_geography.models import Municipality
     from ph_geography.models import Region
 
+
+    # Remove field to Region, Province, Municipality, Barangay, and any subclass models of PhilippineGeography
+    PhilippineGeography.remove_field('population')
 
     # Remove field 'island_group' from Region
     Region.remove_field('island_group')
