@@ -270,7 +270,7 @@ class Barangay(PhilippineGeography):
         on_delete=models.CASCADE,
         verbose_name='Barangay'
     )
-    is_urban = models.BooleanField(null=True, verbose_name='Is Urban')
+    is_urban = models.NullBooleanField(null=True, verbose_name='Is Urban')
 
     class Meta:
         db_table = 'ph_geography_barangay'
