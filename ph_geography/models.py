@@ -81,10 +81,12 @@ class PhilippineGeography(models.Model):
         name = getattr(self, 'name', None)
         model = self.__class__.__name__
         if code and name:
-            return '<Code: {code}, {model}: {name}>'.format(code=code, model=model, name=name)
+            value = '<Code: {code}, {model}: {name}>'.format(code=code, model=model, name=name)
         elif name:
-            return '<{model}: {name}>'.format(model=model, name=name)
-        return super(PhilippineGeography, self).__repr__()
+            value = '<{model}: {name}>'.format(model=model, name=name)
+        else:
+            value = super(PhilippineGeography, self).__repr__()
+        return value
 
     def __str__(self):
         return getattr(self, 'name', None) or super(PhilippineGeography, self).__str__()
