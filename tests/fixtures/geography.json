@@ -1,0 +1,52 @@
+[
+  {
+    "model": "ph_geography.region",
+    "pk": 14,
+    "fields": {
+      "code": "130000000",
+      "name": "NATIONAL CAPITAL REGION (NCR)",
+      "population": 12877253,
+      "is_active": true,
+      "island_group": "L"
+    }
+  },
+  {
+    "model": "ph_geography.province",
+    "pk": 66,
+    "fields": {
+      "code": "130000000",
+      "name": "METRO MANILA",
+      "population": 12877253,
+      "is_active": true,
+      "region": 14,
+      "income_class": "1"
+    }
+  },
+  {
+    "model": "ph_geography.municipality",
+    "pk": 1354,
+    "fields": {
+      "code": "137404000",
+      "name": "QUEZON CITY",
+      "population": 2936116,
+      "is_active": true,
+      "province": 66,
+      "is_city": true,
+      "is_capital": false,
+      "city_class": "H",
+      "income_class": "S"
+    }
+  },
+  {
+    "model": "ph_geography.barangay",
+    "pk": 36358,
+    "fields": {
+      "code": "137404031",
+      "name": "DOÑA IMELDA",
+      "population": 16915,
+      "is_active": true,
+      "municipality": 1354,
+      "is_urban": true
+    }
+  }
+]

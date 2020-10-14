@@ -1,0 +1,46 @@
+language: python
+
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
+
+env:
+  - DJANGO_VERSION="1.11.*"
+  - DJANGO_VERSION="2.0.*"
+  - DJANGO_VERSION="2.1.*"
+  - DJANGO_VERSION="2.2.*"
+  - DJANGO_VERSION="3.0.*"
+  - DJANGO_VERSION="3.1.*"
+
+matrix:
+  exclude:
+    - python: "3.4"
+      env: DJANGO_VERSION="2.1.*"
+    - python: "3.4"
+      env: DJANGO_VERSION="2.2.*"
+    - python: "3.4"
+      env: DJANGO_VERSION="3.0.*"
+    - python: "3.4"
+      env: DJANGO_VERSION="3.1.*"
+    - python: "3.5"
+      env: DJANGO_VERSION="3.0.*"
+    - python: "3.5"
+      env: DJANGO_VERSION="3.1.*"
+    - python: "3.8"
+      env: DJANGO_VERSION="2.0.*"
+    - python: "3.8"
+      env: DJANGO_VERSION="2.1.*"
+
+install:
+  - pip install codecov
+  - pip install Django==$DJANGO_VERSION
+  - pip install django-migration-testcase==0.0.15
+
+script:
+  - coverage run runtests.py
+
+after_success:
+  - codecov
